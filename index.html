@@ -1,72 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-* {
-  box-sizing: border-box;
-}
-html, body {
-  margin: 0;
-  padding: 0;
-  min-height: 100%;
-  background: #160c22;
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-}
-.halloween-background {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
-  pointer-events: none;
-  background:
-    radial-gradient(
-      ellipse 85% 65% at 0% 0%,
-      rgba(126, 55, 190, 0.75) 0%,
-      rgba(100, 39, 150, 0.35) 40%,
-      transparent 75%
-    ),
-    radial-gradient(
-      ellipse 80% 65% at 100% 20%,
-      rgba(102, 177, 57, 0.48) 0%,
-      rgba(75, 130, 44, 0.20) 43%,
-      transparent 75%
-    ),
-    radial-gradient(
-      ellipse 90% 70% at 85% 100%,
-      rgba(239, 105, 36, 0.48) 0%,
-      rgba(175, 65, 35, 0.20) 45%,
-      transparent 76%
-    ),
-    radial-gradient(
-      ellipse 85% 65% at 0% 75%,
-      rgba(112, 48, 174, 0.55) 0%,
-      transparent 72%
-    ),
-    radial-gradient(
-      ellipse 65% 55% at 48% 48%,
-      rgba(68, 42, 83, 0.32) 0%,
-      transparent 80%
-    ),
-    linear-gradient(
-      145deg,
-      #1b1028 0%,
-      #21132b 48%,
-      #171020 100%
-    );
-}
-/* Keep existing app elements above the background */
-.app-content {
-  position: relative;
-  z-index: 1;
-  min-height: 100vh;
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Halloween Gradient Background</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    html,
+    body {
+      margin: 0 !important;
+      padding: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      overflow: hidden;
+    }
+    body {
+      background: #392044;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    .halloween-background {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      pointer-events: none;
+      background:
+        /* Soft purple glow at the top-left */
+        radial-gradient(
+          ellipse 90% 58% at 0% 4%,
+          rgba(126, 65, 166, 0.78) 0%,
+          rgba(104, 48, 143, 0.48) 38%,
+          transparent 78%
+        ),
+        /* Gentle green glow on the right */
+        radial-gradient(
+          ellipse 65% 65% at 100% 38%,
+          rgba(73, 105, 49, 0.42) 0%,
+          rgba(63, 87, 46, 0.24) 40%,
+          transparent 78%
+        ),
+        /* Subtle burnt-orange glow near the bottom */
+        radial-gradient(
+          ellipse 70% 42% at 80% 100%,
+          rgba(177, 83, 39, 0.28) 0%,
+          rgba(133, 59, 45, 0.12) 45%,
+          transparent 80%
+        ),
+        /* Purple glow at the lower-left */
+        radial-gradient(
+          ellipse 75% 65% at 0% 82%,
+          rgba(83, 37, 122, 0.72) 0%,
+          rgba(67, 32, 99, 0.40) 45%,
+          transparent 82%
+        ),
+        /* Soft plum center to blend everything together */
+        radial-gradient(
+          ellipse 90% 85% at 48% 48%,
+          rgba(57, 32, 68, 0.42) 0%,
+          transparent 78%
+        ),
+        /* Base color */
+        linear-gradient(
+          145deg,
+          #48204f 0%,
+          #392044 48%,
+          #321b43 100%
+        );
+    }
+  </style>
 </head>
 <body>
-<div class="halloween-background"></div>
-<div class="app-content">
-  <!-- Put your existing Fatty Family UI here -->
-</div>
+  <div class="halloween-background"></div>
 </body>
 </html>
