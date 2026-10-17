@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+* {
+  box-sizing: border-box;
+}
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  background: #160c22;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+.halloween-background {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse 85% 65% at 0% 0%,
+      rgba(126, 55, 190, 0.75) 0%,
+      rgba(100, 39, 150, 0.35) 40%,
+      transparent 75%
+    ),
+    radial-gradient(
+      ellipse 80% 65% at 100% 20%,
+      rgba(102, 177, 57, 0.48) 0%,
+      rgba(75, 130, 44, 0.20) 43%,
+      transparent 75%
+    ),
+    radial-gradient(
+      ellipse 90% 70% at 85% 100%,
+      rgba(239, 105, 36, 0.48) 0%,
+      rgba(175, 65, 35, 0.20) 45%,
+      transparent 76%
+    ),
+    radial-gradient(
+      ellipse 85% 65% at 0% 75%,
+      rgba(112, 48, 174, 0.55) 0%,
+      transparent 72%
+    ),
+    radial-gradient(
+      ellipse 65% 55% at 48% 48%,
+      rgba(68, 42, 83, 0.32) 0%,
+      transparent 80%
+    ),
+    linear-gradient(
+      145deg,
+      #1b1028 0%,
+      #21132b 48%,
+      #171020 100%
+    );
+}
+/* Keep existing app elements above the background */
+.app-content {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+}
+</style>
+</head>
+<body>
+<div class="halloween-background"></div>
+<div class="app-content">
+  <!-- Put your existing Fatty Family UI here -->
+</div>
+</body>
+</html>
