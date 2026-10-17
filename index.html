@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>Blended Halloween Smoke</title>
+<title>Black & Orange Flowing Smoke</title>
 
 <style>
 * {
@@ -24,154 +24,185 @@ html, body {
   inset: 0;
   overflow: hidden;
   isolation: isolate;
-  background: #050403;
+  background: #080503;
 }
 
-/* Orange glow clouds */
-.cloud {
+/* Base orange atmosphere */
+.orange-base {
   position: absolute;
-  width: 80vw;
-  height: 120vh;
-  top: -10vh;
-  border-radius: 50%;
-  filter: blur(65px);
-  opacity: 0.9;
-  will-change: transform;
+  inset: -20%;
+  background:
+    radial-gradient(ellipse at 5% 30%, #ff6500 0%, transparent 38%),
+    radial-gradient(ellipse at 95% 70%, #f04a00 0%, transparent 42%),
+    radial-gradient(ellipse at 35% 100%, #a92d00 0%, transparent 40%),
+    radial-gradient(ellipse at 75% 0%, #bd3900 0%, transparent 38%);
+  filter: blur(35px);
+  animation: orangeTravel 5s ease-in-out infinite alternate;
 }
 
-.orange-left {
-  left: -35vw;
-  background: #ff5a00;
-  animation: orangeLeft 3s ease-in-out infinite alternate;
-}
-
-.orange-right {
-  right: -35vw;
-  background: #ff6500;
-  animation: orangeRight 3.4s ease-in-out infinite alternate;
-}
-
-.orange-center-left {
-  left: -25vw;
-  top: 15vh;
-  width: 85vw;
-  height: 75vh;
-  background: #a92c00;
-  filter: blur(90px);
-  opacity: 0.75;
-  animation: centerLeft 2.6s ease-in-out infinite alternate;
-}
-
-.orange-center-right {
-  right: -25vw;
-  top: 10vh;
-  width: 85vw;
-  height: 80vh;
-  background: #c23b00;
-  filter: blur(90px);
-  opacity: 0.75;
-  animation: centerRight 3.2s ease-in-out infinite alternate;
-}
-
-/* Dark clouds that MIX with the orange */
-.black-smoke {
-  position: absolute;
-  width: 85vw;
-  height: 115vh;
-  top: -8vh;
-  border-radius: 45%;
-  background: #080604;
-  filter: blur(75px);
-  opacity: 0.92;
-  will-change: transform;
-}
-
-.black-left {
-  left: 8vw;
-  animation: blackLeft 3.1s ease-in-out infinite alternate;
-}
-
-.black-right {
-  right: 8vw;
-  animation: blackRight 2.8s ease-in-out infinite alternate;
-}
-
-.black-middle {
+/* Moving black streams — stretched rather than circular */
+.stream {
   position: absolute;
   z-index: 2;
-  left: 20%;
-  top: -20%;
-  width: 60%;
-  height: 140%;
+  left: -35%;
+  width: 170%;
+  height: 34%;
+  border-radius: 50%;
+  filter: blur(35px);
   background: #050403;
-  filter: blur(48px);
-  opacity: 0.85;
-  animation: middleFlow 3.5s ease-in-out infinite alternate;
+  will-change: transform;
 }
 
-/* Extra soft blending layer */
-.blend {
+.stream-one {
+  top: 10%;
+  transform: rotate(-13deg);
+  animation: streamOne 4.5s ease-in-out infinite alternate;
+}
+
+.stream-two {
+  top: 38%;
+  height: 27%;
+  transform: rotate(9deg);
+  animation: streamTwo 3.8s ease-in-out infinite alternate;
+}
+
+.stream-three {
+  top: 65%;
+  height: 35%;
+  transform: rotate(-10deg);
+  animation: streamThree 5.2s ease-in-out infinite alternate;
+}
+
+/* Orange ribbons flowing through the dark streams */
+.ribbon {
   position: absolute;
-  inset: -25%;
   z-index: 3;
+  width: 155%;
+  height: 18%;
+  left: -25%;
+  border-radius: 50%;
+  filter: blur(32px);
+  opacity: 0.95;
+  background: #ff5b00;
+  will-change: transform;
+}
+
+.ribbon-one {
+  top: 23%;
+  animation: ribbonOne 3.2s ease-in-out infinite alternate;
+}
+
+.ribbon-two {
+  top: 53%;
+  height: 15%;
+  background: #d83a00;
+  animation: ribbonTwo 3.7s ease-in-out infinite alternate;
+}
+
+.ribbon-three {
+  top: 77%;
+  height: 13%;
+  background: #ff7914;
+  animation: ribbonThree 4.1s ease-in-out infinite alternate;
+}
+
+/* Soft color haze so no edges look cut out */
+.color-haze {
+  position: absolute;
+  z-index: 4;
+  inset: -20%;
   background:
     linear-gradient(
-      90deg,
-      rgba(5,4,3,0.0) 0%,
-      rgba(5,4,3,0.15) 18%,
-      rgba(5,4,3,0.4) 32%,
-      rgba(5,4,3,0.25) 43%,
-      rgba(5,4,3,0.45) 55%,
-      rgba(5,4,3,0.2) 68%,
-      rgba(5,4,3,0.0) 85%
+      120deg,
+      transparent 10%,
+      rgba(255, 78, 0, 0.18) 27%,
+      rgba(0, 0, 0, 0.10) 39%,
+      rgba(255, 90, 0, 0.16) 52%,
+      rgba(0, 0, 0, 0.12) 66%,
+      transparent 85%
     );
-  filter: blur(60px);
-  animation: blendFlow 4s ease-in-out infinite alternate;
+  filter: blur(45px);
+  animation: hazeMove 4s ease-in-out infinite alternate;
 }
 
-/* Quick, overlapping motion */
-@keyframes orangeLeft {
-  0% { transform: translate(-8vw, -5vh) scale(0.9) rotate(-8deg); }
-  100% { transform: translate(28vw, 10vh) scale(1.2) rotate(10deg); }
+/* Color streams travel sideways and diagonally */
+@keyframes orangeTravel {
+  0% {
+    transform: translate(-5%, 3%) rotate(-3deg);
+  }
+  100% {
+    transform: translate(5%, -3%) rotate(3deg);
+  }
 }
 
-@keyframes orangeRight {
-  0% { transform: translate(8vw, 6vh) scale(1.1) rotate(8deg); }
-  100% { transform: translate(-28vw, -12vh) scale(0.9) rotate(-10deg); }
+@keyframes streamOne {
+  0% {
+    transform: translate(-8%, -12%) rotate(-17deg);
+  }
+  100% {
+    transform: translate(10%, 15%) rotate(-5deg);
+  }
 }
 
-@keyframes centerLeft {
-  0% { transform: translate(-8vw, 10vh) scale(0.85); }
-  100% { transform: translate(25vw, -10vh) scale(1.2); }
+@keyframes streamTwo {
+  0% {
+    transform: translate(9%, 8%) rotate(15deg);
+  }
+  100% {
+    transform: translate(-9%, -10%) rotate(2deg);
+  }
 }
 
-@keyframes centerRight {
-  0% { transform: translate(8vw, -10vh) scale(1.15); }
-  100% { transform: translate(-25vw, 12vh) scale(0.85); }
+@keyframes streamThree {
+  0% {
+    transform: translate(-7%, 12%) rotate(-15deg);
+  }
+  100% {
+    transform: translate(8%, -12%) rotate(-3deg);
+  }
 }
 
-@keyframes blackLeft {
-  0% { transform: translate(8vw, 4vh) scale(0.8); }
-  100% { transform: translate(-15vw, -5vh) scale(1.15); }
+@keyframes ribbonOne {
+  0% {
+    transform: translate(-12%, 8%) rotate(10deg);
+  }
+  100% {
+    transform: translate(12%, -10%) rotate(-8deg);
+  }
 }
 
-@keyframes blackRight {
-  0% { transform: translate(-8vw, -5vh) scale(1.15); }
-  100% { transform: translate(15vw, 6vh) scale(0.8); }
+@keyframes ribbonTwo {
+  0% {
+    transform: translate(10%, -8%) rotate(-10deg);
+  }
+  100% {
+    transform: translate(-10%, 10%) rotate(12deg);
+  }
 }
 
-@keyframes middleFlow {
-  0% { transform: translateX(-5vw) scaleX(0.85); }
-  100% { transform: translateX(5vw) scaleX(1.15); }
+@keyframes ribbonThree {
+  0% {
+    transform: translate(-10%, -6%) rotate(8deg);
+  }
+  100% {
+    transform: translate(10%, 8%) rotate(-12deg);
+  }
 }
 
-@keyframes blendFlow {
-  0% { transform: translateX(-5vw) translateY(2vh); }
-  100% { transform: translateX(5vw) translateY(-2vh); }
+@keyframes hazeMove {
+  0% {
+    transform: translate(-4%, 2%) rotate(-3deg);
+  }
+  100% {
+    transform: translate(4%, -2%) rotate(3deg);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .cloud, .black-smoke, .black-middle, .blend {
+  .orange-base,
+  .stream,
+  .ribbon,
+  .color-haze {
     animation: none;
   }
 }
@@ -180,16 +211,17 @@ html, body {
 
 <body>
 <div class="background">
-  <div class="cloud orange-left"></div>
-  <div class="cloud orange-right"></div>
-  <div class="cloud orange-center-left"></div>
-  <div class="cloud orange-center-right"></div>
+  <div class="orange-base"></div>
 
-  <div class="black-smoke black-left"></div>
-  <div class="black-smoke black-right"></div>
-  <div class="black-middle"></div>
+  <div class="stream stream-one"></div>
+  <div class="stream stream-two"></div>
+  <div class="stream stream-three"></div>
 
-  <div class="blend"></div>
+  <div class="ribbon ribbon-one"></div>
+  <div class="ribbon ribbon-two"></div>
+  <div class="ribbon ribbon-three"></div>
+
+  <div class="color-haze"></div>
 </div>
 </body>
 </html>
